@@ -58,6 +58,10 @@ const useStyles = isMobile => ({
   },
   textfield: {
     minWidth: '18%'
+  },
+  button: {
+    color: 'rgb(219,172,52)',
+    borderColor: 'rgb(219,172,52)'
   }
 })
 
@@ -156,7 +160,7 @@ function ConfirmationModal () {
   }
   return (
     <Grid>
-      <Button variant='outlined' onClick={handleOpen}>
+      <Button style={styles.button} variant='outlined' onClick={handleOpen}>
         Confirmar Asistencia
       </Button>
       <Modal

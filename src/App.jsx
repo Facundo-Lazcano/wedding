@@ -9,6 +9,7 @@ import Gifts from './components/Gifts'
 import Confirmation from './components/Confirmation'
 import AboutUs from './components/AboutUs'
 import Music from './components/Music'
+import Greetings from './components/Greetings'
 const styles = {
   main: {
     backgroundColor: '#e1e1e1',
@@ -50,6 +51,7 @@ export default function App () {
         <Divider style={styles.divider} />
         <Music />
         <Divider style={styles.divider} />
+        <Greetings />
       </Grid>
     </main>
   )

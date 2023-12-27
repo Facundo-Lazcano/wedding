@@ -37,24 +37,18 @@ const useStyles = isMobile => ({
     display: 'flex',
     justifyContent: 'space-between'
   },
-  inputWithCheckbox: {
-    width: isMobile ? '60%' : '75%'
-  },
-  text: {
+  title: {
+    fontWeight: 'bold',
+    fontSize: isMobile ? '16px' : '24px',
     marginBottom: '15px',
     textAlign: 'center'
   },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 'larger',
-    marginBottom: '15px'
-  },
   textfield: {
-    minWidth: '18%'
+    minWidth: '50%'
   },
   music: {
     position: 'absolute',
-    top: '20%',
+    top: '40%',
     left: isMobile ? '2%' : '27%',
     height: '50px'
   },
@@ -63,6 +57,10 @@ const useStyles = isMobile => ({
     top: '40%',
     right: isMobile ? '2%' : '27%',
     height: '50px'
+  },
+  button: {
+    color: 'rgb(219,172,52)',
+    borderColor: 'rgb(219,172,52)'
   }
 })
 
@@ -143,7 +141,7 @@ function MusicModal () {
   }
   return (
     <Grid>
-      <Button variant='outlined' onClick={handleOpen}>
+      <Button style={styles.button} variant='outlined' onClick={handleOpen}>
         Solicitar temas
       </Button>
       <Modal

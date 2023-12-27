@@ -60,6 +60,10 @@ const useStyles = isMobile => ({
     top: '40%',
     right: isMobile ? '2%' : '27%',
     height: '50px'
+  },
+  button: {
+    color: 'white',
+    borderColor: 'white'
   }
 })
 export default function Gifts () {
@@ -135,7 +139,11 @@ function BankDetailsModal () {
   const [aliasCopy, setAliasCopy] = useState('')
   return (
     <Grid>
-      <Button variant='outlined' onClick={handleOpenModal}>
+      <Button
+        style={styles.button}
+        variant='outlined'
+        onClick={handleOpenModal}
+      >
         Ver datos bancarios
       </Button>
       <Modal

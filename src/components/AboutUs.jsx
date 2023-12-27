@@ -12,11 +12,12 @@ const useStyles = isMobile => ({
     alignItems: 'center'
   },
   imageList: {
-    width: isMobile ? '100vw' : '70vw'
+    width: isMobile ? '100vw' : '70vw',
+    overflow: 'hidden'
   },
   title: {
     fontWeight: 'bolder',
-    fontSize: 'larger'
+    fontSize: isMobile ? '16px' : '24px'
   },
   image: { borderRadius: '3px' },
   imageHover: {
