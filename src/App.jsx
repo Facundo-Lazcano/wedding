@@ -7,6 +7,8 @@ import DressCode from './components/DressCode'
 import ParallaxBackground from './components/ParallaxBackground'
 import Gifts from './components/Gifts'
 import Confirmation from './components/Confirmation'
+import AboutUs from './components/AboutUs'
+import Music from './components/Music'
 const styles = {
   main: {
     backgroundColor: '#e1e1e1',
@@ -43,6 +45,10 @@ export default function App () {
         <Gifts />
         <Divider style={styles.divider} />
         <Confirmation />
+        <Divider style={styles.divider} />
+        <AboutUs />
+        <Divider style={styles.divider} />
+        <Music />
         <Divider style={styles.divider} />
       </Grid>
     </main>

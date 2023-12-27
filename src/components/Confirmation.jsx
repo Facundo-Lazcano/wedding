@@ -100,6 +100,7 @@ function ConfirmationModal () {
   const handleClose = useCallback(() => {
     setOpen(false)
     setInputs([initialInputs])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const handleAdd = useCallback(
     () =>
@@ -126,9 +127,10 @@ function ConfirmationModal () {
         'https://script.google.com/macros/s/AKfycbyIulG_TX4GyWHzIohoM09uzBdeXVVPSgbMEclBp40wZWz_R8Gx8Rq8RS0NawDdmFzU/exec'
       const reqPromises = inputs.map(async (input, idx) => {
         const reqBody = {
-          Nombre: input.firstName,
-          Apellido: input.lastName,
-          Menu: input.special ? input.specialDescription : 'No',
+          sheetName: 'Casamiento',
+          Nombre: input.firstName.trim(),
+          Apellido: input.lastName.trim(),
+          Menu: input.special ? input.specialDescription.trim() : 'No',
           Edad: input.age,
           'Acompañante de':
             idx === 0 ? '' : `${inputs[0].firstName} ${inputs[0].lastName}`
@@ -148,7 +150,6 @@ function ConfirmationModal () {
     } catch (error) {
       Swal.fire({
         title: 'Ocurrió un error',
-        text: error,
         icon: 'error'
       })
     }
