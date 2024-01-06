@@ -60,8 +60,9 @@ const useStyles = isMobile => ({
     minWidth: '18%'
   },
   button: {
-    color: 'rgb(219,172,52)',
-    borderColor: 'rgb(219,172,52)'
+    borderRadius: '30px',
+    backgroundColor: '#1b1b1b',
+    color: '#f6f5f1'
   }
 })
 
@@ -70,18 +71,6 @@ export default function Confirmation () {
   const styles = useStyles(isMobile)
   return (
     <Grid style={styles.confirmationContainer}>
-      <Grid style={styles.text}>
-        <Grid style={styles.title}>Confirmación de Asistencia</Grid>
-        <Grid>
-          Queremos compartir con vos este momento tan especial en nuestras
-          vidas.
-        </Grid>
-        <Grid>
-          Te pedimos por favor llenar el siguiente formulario para confirmar tu
-          asisencia
-        </Grid>
-      </Grid>
-
       <ConfirmationModal />
     </Grid>
   )

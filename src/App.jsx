@@ -6,7 +6,6 @@ import Addresses from './components/Addresses'
 import DressCode from './components/DressCode'
 import ParallaxBackground from './components/ParallaxBackground'
 import Gifts from './components/Gifts'
-import Confirmation from './components/Confirmation'
 import AboutUs from './components/AboutUs'
 import Music from './components/Music'
 import Greetings from './components/Greetings'
@@ -47,8 +46,6 @@ export default function App () {
         <DressCode />
         <Divider style={styles.divider} />
         <Gifts />
-        <Divider style={styles.divider} />
-        <Confirmation />
         <Divider style={styles.divider} />
         <AboutUs />
         <Divider style={styles.divider} />

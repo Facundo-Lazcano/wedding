@@ -28,9 +28,9 @@ const useStyles = () => ({
   },
   title: {
     textAlign: 'center',
-    fontFamily: 'Centaur, sans-serif',
+    fontFamily: 'Bell, sans-serif',
     fontWeight: 'bold',
-    color: 'white',
+    color: '#1b1b1b',
     fontSize: '7vw',
     margin: 'auto',
     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',

@@ -1,45 +1,35 @@
 /* eslint-disable react/prop-types */
-import { Grid } from '@mui/material'
+import { Button, Grid, Link } from '@mui/material'
 import useIsMobile from '../hooks/useIsMobile'
-import church from '../assets/church.png'
-import party from '../assets/party.png'
-import { AccessTime } from '@mui/icons-material'
+import { AccessTime, Nightlife, Today } from '@mui/icons-material'
+import Confirmation from './Confirmation'
+import { CrossIcon } from '../assets/componentHelper'
 
-function styles (isMobile) {
+function useStyles (isMobile) {
   return {
     addressContainer: {
       display: 'flex',
       flexDirection: 'column',
       width: isMobile ? '95vw' : '80vw',
       margin: 'auto',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      gap: '30px'
+      gap: '30px',
+      position: 'relative'
+    },
+    timeLine: {
+      height: '70%',
+      position: 'absolute',
+      left: '50%',
+      border: '2px solid #1b1b1b',
+      top: '15%'
     },
     addressCard: {
       display: 'flex',
-      flexDirection: isMobile ? 'column' : 'row',
-      justifyContent: 'space-between',
-      width: '100%',
-      height: isMobile ? 'auto' : '20vh'
-    },
-    leftAddress: {
-      display: 'flex',
-      flexDirection: 'row',
-      border: '1px solid rgb(219, 172, 52)',
-      borderRadius: '3px',
-      padding: '10px',
-      backgroundColor: 'rgba(219,172,52,0.2)',
-      width: isMobile ? '100%' : '45%',
-      marginBottom: isMobile ? '5px' : '0',
-      alignSelf: 'center'
-    },
-    leftAddressText: {
-      diaplay: 'flex',
       flexDirection: 'column',
-      fontSize: 'small',
-      alignSelf: 'center',
-      width: '80%'
+      justifyContent: 'space-between',
+      width: '40%',
+      fontFamily: 'Bell, sans-serif',
+      height: isMobile ? 'auto' : '20vh',
+      textAlign: 'center'
     },
     place: {
       textAlign: 'center',
@@ -55,70 +45,126 @@ function styles (isMobile) {
       fontWeight: 'bold',
       alignSelf: 'center'
     },
-    map: {
-      borderRadius: '3px',
-      border: isMobile ? 'none' : '2px solid black'
-    },
-    image: {
-      display: 'flex',
+    mapButton: {
+      marginTop: '10px',
+      maxWidth: '120px',
       margin: 'auto',
-      maxHeight: '10vh',
-      width: '30%'
+      borderRadius: '30px',
+      backgroundColor: '#1b1b1b',
+      color: '#f6f5f1'
+    },
+    title: {
+      fontFamily: 'Button, sans-serif',
+      textAlign: 'center',
+      fontSize: '36px'
+    },
+    header: {
+      fontFamily: 'Button, sans-serif',
+      textAlign: 'center',
+      fontSize: '48px'
+    },
+    date: {
+      alignSelf: 'flex-end'
+    },
+    church: {
+      alignSelf: 'flex-start'
+    },
+    party: {
+      alignSelf: 'flex-end'
     }
   }
 }
 
 export default function Addresses () {
   const isMobile = useIsMobile()
-  const style = styles(isMobile)
+  const styles = useStyles(isMobile)
   return (
-    <Grid style={style.addressContainer}>
+    <Grid style={styles.addressContainer}>
+      <Grid style={styles.timeLine} />
+      <TimeLineIcon top='17%' icon={<Today fontSize='smaller' />} />
+      <TimeLineIcon top='35%' icon={<CrossIcon fontSize='smaller' />} />
+      <TimeLineIcon top='60%' icon={<Nightlife fontSize='smaller' />} />
+      <TimeLineIcon end top='80%' />
+      <Grid style={styles.header}>Ceremonia y Fiesta</Grid>
+      <AdressCard style={styles.date} title='Fecha' place='Sábado 9 de Marzo' />
       <AdressCard
-        image={church}
+        style={styles.church}
+        title='Iglesia'
         place='Iglesia Nuestra Señora del Carmen.'
-        address='Av. Del Carmen 200, Villa Allende'
         time='16:30'
-        iframeSrc='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3409.3831818772187!2d-64.30116082469738!3d-31.293152774318756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94329d056aa66e5f%3A0x8d59cccda2c33d4f!2sIglesia%20Nuestra%20Se%C3%B1ora%20del%20Carmen!5e0!3m2!1ses-419!2sar!4v1694998845902!5m2!1ses-419!2sar'
+        mapUrl='https://maps.app.goo.gl/ZAeNKpKsS4teY5mz5'
       />
       <AdressCard
-        image={party}
+        style={styles.party}
+        title='Salon'
         place='Estancia Victoria'
-        address='Ruta E54 KM 1.5 camino al Cerro Pan de Azucar, Villa Allende'
         time='Despues de la iglesia'
-        iframeSrc='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1205.726141067716!2d-64.33273009909868!3d-31.267560165522426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943282a956aeb473%3A0x5b82fc9c9d94de6b!2sEstancia%20Victoria!5e0!3m2!1ses-419!2sar!4v1694999251096!5m2!1ses-419!2sar'
+        mapUrl='https://maps.app.goo.gl/5TN68N2W3jzDU7jEA'
       />
+      <Grid style={{ height: '20px' }} />
+      <Confirmation />
     </Grid>
   )
 }
 
-function AdressCard ({ image, place, address, time, iframeSrc }) {
+function TimeLineIcon ({ top, icon, end }) {
   const isMobile = useIsMobile()
-  const style = styles(isMobile)
+  if (end) {
+    return (
+      <Grid
+        style={{
+          backgroundColor: 'white',
+          borderRadius: '50%',
+          height: '15px',
+          width: '15px',
+          border: '1px solid #1b1b1b',
+          position: 'absolute',
+          left: isMobile ? '48.5%' : '49.5%',
+          top
+        }}
+      />
+    )
+  }
   return (
-    <Grid style={style.addressCard}>
-      <Grid style={style.leftAddress}>
-        <img style={style.image} src={image}></img>
-        <Grid style={style.leftAddressText}>
-          <Grid style={style.place}>{place}</Grid>
-          <Grid style={style.address}>{address}</Grid>
-          <Grid style={style.time}>
-            <AccessTime /> {time}
-          </Grid>
+    <Grid
+      style={{
+        borderRadius: '50%',
+        border: '1px solid #1b1b1b',
+        padding: '5px 5px 0px 5px',
+        position: 'absolute',
+        left: isMobile ? '47%' : '49%',
+        backgroundColor: 'white',
+        top
+      }}
+    >
+      {icon}
+    </Grid>
+  )
+}
+
+function AdressCard ({ title, place, time, mapUrl, style }) {
+  const isMobile = useIsMobile()
+  const styles = useStyles(isMobile)
+  return (
+    <Grid style={{ ...styles.addressCard, ...style }}>
+      <Grid style={styles.title}>{title}</Grid>
+      <Grid style={styles.place}>{place}</Grid>
+      {time ? (
+        <Grid style={styles.time}>
+          <AccessTime /> {time}
         </Grid>
-      </Grid>
-      <Grid style={style.map}>
-        <iframe
-          src={iframeSrc}
-          style={{
-            width: '99%',
-            height: '98%',
-            borderRadius: '3px'
-          }}
-          allowFullScreen=''
-          loading='lazy'
-          referrerPolicy='no-referrer-when-downgrade'
-        ></iframe>
-      </Grid>
+      ) : null}
+      {mapUrl ? (
+        <Button style={styles.mapButton}>
+          <Link
+            style={{ textDecoration: 'none', color: 'white' }}
+            target='_blank'
+            href={mapUrl}
+          >
+            VER MAPA
+          </Link>
+        </Button>
+      ) : null}
     </Grid>
   )
 }
