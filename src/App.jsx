@@ -10,9 +10,12 @@ import Confirmation from './components/Confirmation'
 import AboutUs from './components/AboutUs'
 import Music from './components/Music'
 import Greetings from './components/Greetings'
+import BackgroundImage from './assets/background.jpg'
+import Title from './components/Title'
 const styles = {
   main: {
     backgroundColor: '#e1e1e1',
+    backgroundImage: `url(${BackgroundImage})`,
     overFlow: 'hidden',
     display: 'flex',
     alignItems: 'center',
@@ -35,6 +38,7 @@ export default function App () {
     <main style={styles.main}>
       <Grid style={styles.body}>
         <Header />
+        <Title />
         <TimeLeftCounter />
         <Divider style={styles.divider} />
         <ParallaxBackground />

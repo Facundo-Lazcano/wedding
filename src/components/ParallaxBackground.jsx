@@ -1,4 +1,4 @@
-import BackgroundImage from '../assets/background.jpg'
+import BackgroundImage from '../assets/parallax.jpg'
 
 const useStyles = () => ({
   parallax: {

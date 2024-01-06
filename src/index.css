@@ -1,3 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@font-face {
+    font-family: 'Button';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Button'), url('./fonts/button.otf') format('truetype');
+}
+
+
+
+@font-face {
+    font-family: 'Centaur';
+    src: local('Centaur'), url('./fonts/centaur.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Bell';
+    src: local('Bell'), url('./fonts/bellnormal.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Bell';
+    src: local('Bell'), url('./fonts/bellbold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Bell';
+    src: local('Bell'), url('./fonts/bellitalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+  }
+
+
 :root {
   font-family: Montserrat;
   line-height: 1.5;
@@ -67,3 +103,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+

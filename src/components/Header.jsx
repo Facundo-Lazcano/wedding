@@ -23,23 +23,13 @@ const useStyles = () => ({
     backgroundRepeat: 'no-repeat',
     height: '100vh',
     width: '100vw',
-    position: 'relative'
-  },
-  names: {
-    fontWeight: 'bold',
-    fontSize: '5vw',
-    textAlign: 'center',
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-    alignSelf: 'center',
-    justifySelf: 'center',
-    margin: 'auto',
-    color: 'white',
-    position: 'absolute',
-    bottom: '10vh'
+    position: 'relative',
+    border: '2px solid black'
   },
   title: {
     textAlign: 'center',
-    fontWeight: 'bolder',
+    fontFamily: 'Centaur, sans-serif',
+    fontWeight: 'bold',
     color: 'white',
     fontSize: '7vw',
     margin: 'auto',
@@ -53,12 +43,7 @@ export default function Header () {
   const styles = useStyles()
   return (
     <Grid style={styles.header}>
-      <Grid style={styles.title}>NOS CASAMOS!!!</Grid>
-      <Grid style={styles.names}>
-        <Grid>GIULI</Grid>
-        <Grid>&</Grid>
-        <Grid>FACU</Grid>
-      </Grid>
+      <Grid style={styles.title}>#CHINAYWOMO</Grid>
     </Grid>
   )
 }
