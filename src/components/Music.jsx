@@ -3,6 +3,7 @@ import { Backdrop, Button, Fade, Grid, Modal, TextField } from '@mui/material'
 import useIsMobile from '../hooks/useIsMobile'
 import { useCallback, useMemo, useState } from 'react'
 import Swal from 'sweetalert2'
+import BackgroundImage from '../assets/background.jpg'
 
 const useStyles = isMobile => ({
   musicContainer: {
@@ -24,7 +25,7 @@ const useStyles = isMobile => ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: 'white',
+    backgroundImage: `url(${BackgroundImage})`,
     border: '2px solid #000',
     borderRadius: '3px',
     boxShadow: 24,
@@ -33,7 +34,7 @@ const useStyles = isMobile => ({
   },
   modalButtons: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'flex-end'
   },
   title: {
     fontWeight: 'bold',
@@ -87,15 +88,6 @@ function MusicModal () {
     setInputs([initialInputs])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  const handleAdd = useCallback(
-    () =>
-      setInputs(prevState => {
-        const cloneState = JSON.parse(JSON.stringify(prevState))
-        cloneState.push(initialInputs)
-        return cloneState
-      }),
-    [initialInputs]
-  )
 
   async function handleConfirm (e) {
     e.preventDefault()
@@ -118,12 +110,14 @@ function MusicModal () {
       await Promise.all(reqPromises)
       Swal.fire({
         title: 'Temas guardados',
+        background: `url(${BackgroundImage})`,
         text: 'Gracias por solicitar esas canciones. Se las vamos a pasar al DJ para hacer esta noche especial.',
         icon: 'success'
       })
     } catch (error) {
       Swal.fire({
         title: 'Ocurrió un error',
+        background: `url(${BackgroundImage})`,
         text: error,
         icon: 'error'
       })
@@ -161,15 +155,12 @@ function MusicModal () {
               )
             })}
             <Grid style={styles.modalButtons}>
-              <Button variant='outlined' onClick={handleAdd}>
-                Agregar cancion
-              </Button>
               <Button
+                color='warning'
                 variant='outlined'
-                color='success'
                 onClick={handleConfirm}
               >
-                Solicitar canciones
+                Sugerir canción
               </Button>
             </Grid>
           </Grid>
