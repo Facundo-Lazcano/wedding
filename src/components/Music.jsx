@@ -3,8 +3,6 @@ import { Backdrop, Button, Fade, Grid, Modal, TextField } from '@mui/material'
 import useIsMobile from '../hooks/useIsMobile'
 import { useCallback, useMemo, useState } from 'react'
 import Swal from 'sweetalert2'
-import music from '../assets/music.png'
-import music2 from '../assets/music2.png'
 
 const useStyles = isMobile => ({
   musicContainer: {
@@ -59,24 +57,16 @@ const useStyles = isMobile => ({
     height: '50px'
   },
   button: {
-    color: 'rgb(219,172,52)',
-    borderColor: 'rgb(219,172,52)'
+    borderRadius: '30px',
+    backgroundColor: '#1b1b1b',
+    color: '#f6f5f1',
+    fontSize: '8px',
+    marginTop: '5px'
   }
 })
 
 export default function Music () {
-  const styles = useStyles(useIsMobile())
-
-  return (
-    <Grid style={styles.musicContainer}>
-      <Grid style={styles.title}>
-        Que canciones no pueden faltar en la noche?
-      </Grid>
-      <img style={styles.music} src={music} alt='music' />
-      <img style={styles.music2} src={music2} alt='music2' />
-      <MusicModal />
-    </Grid>
-  )
+  return <MusicModal />
 }
 
 function MusicModal () {
@@ -142,7 +132,7 @@ function MusicModal () {
   return (
     <Grid>
       <Button style={styles.button} variant='outlined' onClick={handleOpen}>
-        Solicitar temas
+        Sugerir canción
       </Button>
       <Modal
         aria-labelledby='transition-modal-title'

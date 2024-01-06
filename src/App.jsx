@@ -7,7 +7,6 @@ import DressCode from './components/DressCode'
 import ParallaxBackground from './components/ParallaxBackground'
 import Gifts from './components/Gifts'
 import AboutUs from './components/AboutUs'
-import Music from './components/Music'
 import Greetings from './components/Greetings'
 import BackgroundImage from './assets/background.jpg'
 import Title from './components/Title'
@@ -48,8 +47,6 @@ export default function App () {
         <DressCode />
         <Divider style={styles.divider} />
         <AboutUs />
-        <Divider style={styles.divider} />
-        <Music />
         <Divider style={styles.divider} />
         <Greetings />
       </Grid>

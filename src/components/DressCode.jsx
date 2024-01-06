@@ -1,12 +1,16 @@
+/* eslint-disable react/prop-types */
 import { Grid } from '@mui/material'
 import useIsMobile from '../hooks/useIsMobile'
-import dressCode from '../assets/dressCode.png'
+import dressCode from '../assets/nosotros/casamientoGiuli.png'
+import musicImg from '../assets/musicImg.png'
+import Music from './Music'
 
 const useStyles = isMobile => ({
   dressCodeContainer: {
     display: 'flex',
-    flexDirection: isMobile ? 'column' : 'row',
-    justifyContent: 'space-around',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: '20px',
     alignItems: 'center',
     width: '90vw',
     margin: 'auto'
@@ -15,17 +19,22 @@ const useStyles = isMobile => ({
     textAlign: 'center'
   },
   title: {
-    fontWeight: 'bolder',
-    fontSize: '25px'
+    fontFamily: 'Button',
+    fontSize: '30px',
+    borderTop: '1px solid #1b1b1b'
   },
-  image: {
-    maxHeight: '20vh'
-  },
-  dressCode: {
-    fontWeight: 'bold'
-  },
+  image: { maxHeight: '55%', borderRadius: '30px 30px 0 0' },
   description: {
-    fontSize: 'smaller'
+    fontFamily: 'Centaur, sans-serif'
+  },
+  cardContainer: {
+    border: '1px solid #1b1b1b',
+    borderRadius: '45px',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
+    width: isMobile ? '40vw' : '20vw',
+    height: '300px'
   }
 })
 export default function DressCode () {
@@ -33,14 +42,29 @@ export default function DressCode () {
   const styles = useStyles(isMobile)
   return (
     <Grid style={styles.dressCodeContainer}>
-      <Grid style={styles.text}>
-        <Grid style={styles.title}>Dress Code</Grid>
-        <Grid style={styles.dressCode}>Formal elegante</Grid>
-        <Grid style={styles.description}>Evitar blanco y similares</Grid>
-      </Grid>
-      <Grid>
-        <img src={dressCode} style={styles.image} />
-      </Grid>
+      <Card
+        img={musicImg}
+        title='Musica'
+        description='Qué canción no puede faltar en la noche'
+        modal={<Music />}
+      />
+      <Card
+        img={dressCode}
+        title='Dress Code'
+        description='Formal elegante. Evitar blanco y similares'
+      />
+    </Grid>
+  )
+}
+
+function Card ({ img, title, description, modal }) {
+  const styles = useStyles(useIsMobile())
+  return (
+    <Grid style={styles.cardContainer}>
+      <img style={styles.image} src={img} />
+      <Grid style={styles.title}>{title}</Grid>
+      <Grid style={styles.description}>{description}</Grid>
+      {modal ? modal : null}
     </Grid>
   )
 }

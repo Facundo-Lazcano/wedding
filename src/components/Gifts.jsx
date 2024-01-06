@@ -34,6 +34,7 @@ const useStyles = isMobile => ({
     borderRadius: '3px',
     width: '50%',
     margin: '10px',
+    padding: '5px',
     marginBottom: '15px',
     cursor: 'pointer',
     fontSize: '12px',
@@ -83,7 +84,8 @@ const useStyles = isMobile => ({
   },
   description: {
     fontFamily: 'Bell',
-    color: '#1b1b1b'
+    color: '#1b1b1b',
+    textAlign: 'center'
   }
 })
 export default function Gifts () {

@@ -8,10 +8,10 @@ const useStyles = isMobile => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '30px 0 ',
-    position: 'relative',
-    backgroundColor: 'rgba(219,172,52,0.2)'
+    position: 'relative'
   },
   text: {
+    fontFamily: 'Bell, sans-serif',
     fontWeight: 'bolder',
     fontSize: isMobile ? '16px' : '24px',
     textAlign: 'center'

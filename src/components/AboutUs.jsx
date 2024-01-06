@@ -16,14 +16,16 @@ const useStyles = isMobile => ({
     overflow: 'hidden'
   },
   title: {
+    fontFamily: 'Button, sans-serif',
     fontWeight: 'bolder',
-    fontSize: isMobile ? '16px' : '24px'
+    fontSize: isMobile ? '32px' : '48px'
   },
-  image: { borderRadius: '3px' },
+  image: { borderRadius: '3px', filter: 'grayscale(100%)' },
   imageHover: {
     borderRadius: '3px',
     transform: 'scale(1.2)',
-    transition: 'transform 0.3s ease-in-out',
+    transition: 'transform 0.6s ease-in-out',
+    filter: 'grayscale(0%)',
     zIndex: 1
   },
   imageListItem: {
