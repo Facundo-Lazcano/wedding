@@ -45,14 +45,14 @@ const useStyles = isMobile => ({
     fontSize: '3vh',
     display: 'flex',
     flexDirection: 'row',
-    fontFamily: 'Centaur, sans-serif',
-    marginRight: '45px'
+    fontFamily: 'Centaur, sans-serif'
   },
   dateBox: {
     borderTop: '2px solid white',
     borderBottom: '2px solid white',
     height: 'fit-content',
-    margin: '50px 0'
+    margin: '50px 0',
+    width: '80px'
   },
   number: {
     fontSize: '90px'
