@@ -3,9 +3,8 @@ import { Backdrop, Button, Fade, Grid, Modal, Tooltip } from '@mui/material'
 import useIsMobile from '../hooks/useIsMobile'
 import { useCallback, useEffect, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import gift from '../assets/gift.png'
-import plane from '../assets/plane.png'
-
+import { GiftIcon, PlaneIcon } from '../assets/componentHelper'
+import BackgroundImage from '../assets/background.jpg'
 const useStyles = isMobile => ({
   giftsContainer: {
     display: 'flex',
@@ -13,14 +12,14 @@ const useStyles = isMobile => ({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    border: '1px solid rgb(219,172,52)',
-    backgroundColor: 'rgba(219,172,52,0.2)',
+    backgroundColor: 'rgba(27,27,27,0.9)',
     padding: '50px'
   },
   text: {
     textAlign: 'center',
     marginBottom: '15px',
-    fontFamily: 'Montserrat'
+    fontFamily: 'Centaur, sans-serif',
+    color: '#ffffff'
   },
   bankAccountsContainer: {
     display: 'flex',
@@ -36,34 +35,55 @@ const useStyles = isMobile => ({
     width: '50%',
     margin: '10px',
     marginBottom: '15px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    fontSize: '12px',
+    color: '#1b1b1b'
   },
   modal: {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundImage: `url(${BackgroundImage})`,
     border: '2px solid #000',
     borderRadius: '3px',
     boxShadow: 24,
-    padding: '10px'
+    padding: '10px',
+    width: isMobile ?? '99%'
+  },
+  info: {
+    position: 'absolute',
+    right: 0,
+    color: '#1b1b1b',
+    top: '0',
+    fontSize: '10px'
   },
   gift: {
     position: 'absolute',
     top: '20%',
     left: isMobile ? '2%' : '27%',
-    height: '50px'
+    height: '50px',
+    width: '50px',
+    color: 'white'
   },
   plane: {
     position: 'absolute',
-    top: '40%',
+    top: '45%',
     right: isMobile ? '2%' : '27%',
-    height: '50px'
+    height: '100px',
+    width: '50px',
+    color: 'white'
   },
   button: {
-    color: 'white',
-    borderColor: 'white'
+    color: '#1b1b1b',
+    borderColor: 'white',
+    backgroundColor: 'white',
+    fontWeight: 'bold',
+    borderRadius: '30px'
+  },
+  description: {
+    fontFamily: 'Bell',
+    color: '#1b1b1b'
   }
 })
 export default function Gifts () {
@@ -78,8 +98,8 @@ export default function Gifts () {
           te invitamos a colaborar con nuestra luna de miel
         </Grid>
       </Grid>
-      <img style={styles.gift} src={gift} alt='gift' />
-      <img style={styles.plane} src={plane} alt='plane' />
+      <GiftIcon style={styles.gift} />
+      <PlaneIcon style={styles.plane} />
       <BankDetailsModal />
     </Grid>
   )
@@ -161,6 +181,9 @@ function BankDetailsModal () {
       >
         <Fade in={openModal}>
           <Grid style={styles.modal}>
+            <Grid style={styles.info}>
+              Apretar la tarjeta para copiar alias
+            </Grid>
             <Grid style={styles.bankAccountsContainer}>
               <BankAccountCard
                 alias='GIULI.APOSTOLI'

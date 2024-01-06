@@ -43,9 +43,9 @@ export default function App () {
         <Divider style={styles.divider} />
         <Addresses />
         <Divider style={styles.divider} />
-        <DressCode />
-        <Divider style={styles.divider} />
         <Gifts />
+        <Divider style={styles.divider} />
+        <DressCode />
         <Divider style={styles.divider} />
         <AboutUs />
         <Divider style={styles.divider} />
