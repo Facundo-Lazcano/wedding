@@ -40,7 +40,6 @@ export default function App () {
         <Header />
         <Title />
         <TimeLeftCounter />
-        <Divider style={styles.divider} />
         <ParallaxBackground />
         <Divider style={styles.divider} />
         <Addresses />

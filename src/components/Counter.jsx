@@ -8,7 +8,6 @@ const useStyles = isMobile => ({
   timeLeft: {
     textAlign: 'center',
     width: '100vw',
-    margin: '20px 0',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
