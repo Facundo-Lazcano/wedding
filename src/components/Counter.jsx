@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { AddToCalendarButton } from 'add-to-calendar-button-react'
 import useIsMobile from '../hooks/useIsMobile'
 
-const useStyles = () => ({
+const useStyles = isMobile => ({
   timeLeft: {
     textAlign: 'center',
     width: '100vw',
@@ -12,7 +12,9 @@ const useStyles = () => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    backgroundColor: 'rgba(27,27,27,0.9)',
+    padding: '15px'
   },
   timeLeftContainer: {
     display: 'flex',
@@ -21,7 +23,8 @@ const useStyles = () => ({
     alignItems: 'center',
     gap: '5px',
     padding: '10px',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: 'Centaur, sans-serif'
   },
   timeLeftCard: {
     textAlign: 'center',
@@ -32,14 +35,34 @@ const useStyles = () => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    width: '90px',
-    height: '90px',
+    width: isMobile ? '80px' : '90px',
+    height: isMobile ? '80px' : '90px',
     padding: '10px',
-    color: '#000000'
+    color: 'white'
   },
   date: {
     fontWeight: 'bold',
-    fontSize: '3vh'
+    color: 'white',
+    fontSize: '3vh',
+    display: 'flex',
+    flexDirection: 'row',
+    fontFamily: 'Centaur, sans-serif',
+    marginRight: '45px'
+  },
+  dateBox: {
+    borderTop: '2px solid white',
+    borderBottom: '2px solid white',
+    height: 'fit-content',
+    margin: '50px 0'
+  },
+  number: {
+    fontSize: '90px'
+  },
+  dateNumber: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 
@@ -76,8 +99,20 @@ export default function TimeLeftCounter () {
   return (
     <Grid style={styles.timeLeft}>
       <Grid style={styles.date}>
-        <Grid>9 de Marzo, 2024</Grid>
-        <Grid>Solo faltan...</Grid>
+        <Grid style={styles.dateBox}>SABADO</Grid>
+        <Grid style={styles.dateNumber}>
+          <div className='warp' aria-labelledby='warp-label'>
+            <span>
+              <span className='warp__0'>M</span>
+              <span className='warp__1'>A</span>
+              <span className='warp__2'>R</span>
+              <span className='warp__3'>Z</span>
+              <span className='warp__4'>O</span>
+            </span>
+          </div>
+          <Grid style={styles.number}>9</Grid>
+        </Grid>
+        <Grid style={styles.dateBox}>2024</Grid>
       </Grid>
       <Grid style={styles.timeLeftContainer}>
         <TimeLeftCard time={timeLeft.days} text={'Días'} />
@@ -101,7 +136,7 @@ export default function TimeLeftCounter () {
 }
 
 function TimeLeftCard ({ time, text }) {
-  const styles = useStyles()
+  const styles = useStyles(useIsMobile())
   return (
     <Grid style={styles.timeLeftCard}>
       <Grid>{time}</Grid>

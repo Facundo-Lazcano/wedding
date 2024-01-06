@@ -14,9 +14,9 @@ import BackgroundImage from './assets/background.jpg'
 import Title from './components/Title'
 const styles = {
   main: {
-    backgroundColor: '#e1e1e1',
+    backgroundColor: '#e1e1ew1',
     backgroundImage: `url(${BackgroundImage})`,
-    overFlow: 'hidden',
+    overFlow: 'scroll',
     display: 'flex',
     alignItems: 'center',
     margin: 'auto',

@@ -104,3 +104,50 @@ button:focus-visible {
   }
 }
 
+@font-face {
+  font-family: ultra;
+  src: url(path/to/font/file/ultra) format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.warp {
+  font: normal 12px/1 ultra;
+  font-family: 'Centaur', sans-serif;
+  width: 100px;
+}
+
+[class*='warp__'] {
+  display: flex;
+  margin: auto;
+  margin-right: 20px;
+  position: absolute;
+  align-self: center;
+
+}
+
+.warp__0 {
+  transform-origin: 50% 10px;
+  transform: translate(21.8411px,23.991300000000003px) rotate(-0.175781rad);
+}
+
+.warp__1 {
+  transform-origin: 50% 10px;
+  transform: translate(34.9202px,22.5522px) rotate(-0.080715rad);
+}
+
+.warp__2 {
+  transform-origin: 50% 10px;
+  transform: translate(45.018px,22.219299999999997px) rotate(0.01943rad);
+}
+
+.warp__3 {
+  transform-origin: 50% 10px;
+  transform: translate(56.145px,22.936px) rotate(0.122927rad);
+}
+
+.warp__4 {
+  transform-origin: 50% 10px;
+  transform: translate(64.8119px,24.6455px) rotate(0.227653rad);
+}
