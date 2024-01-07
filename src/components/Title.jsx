@@ -56,9 +56,7 @@ export default function Title () {
           Facundo
         </Typography>
       </Grid>
-      <Grid style={styles.text}>
-        Despues de tanto tiempo hemos decidido que ... NOS CASAMOS!
-      </Grid>
+      <Grid style={styles.text}>¡¡¡NOS CASAMOS!!!</Grid>
     </Grid>
   )
 }

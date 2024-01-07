@@ -50,7 +50,7 @@ const useStyles = isMobile => ({
     borderRadius: '3px',
     boxShadow: 24,
     padding: '10px',
-    width: isMobile ?? '99%'
+    width: isMobile ? '99%' : '600px'
   },
   info: {
     position: 'absolute',
@@ -69,7 +69,7 @@ const useStyles = isMobile => ({
   },
   plane: {
     position: 'absolute',
-    top: '45%',
+    top: '10%',
     right: isMobile ? '2%' : '27%',
     height: '100px',
     width: '50px',

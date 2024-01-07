@@ -121,7 +121,7 @@ export default function TimeLeftCounter () {
       </Grid>
       <AddToCalendarButton
         name='Casamiento China y Womo'
-        label='Guardar en el calendario'
+        label='Agenda la fecha'
         buttonStyle='round'
         startDate='2024-03-09'
         startTime='16:30'

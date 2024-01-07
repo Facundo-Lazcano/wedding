@@ -33,7 +33,7 @@ const useStyles = isMobile => ({
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
-    width: isMobile ? '40vw' : '20vw',
+    width: isMobile ? '40vw' : '15vw',
     height: '300px'
   }
 })
@@ -44,14 +44,14 @@ export default function DressCode () {
     <Grid style={styles.dressCodeContainer}>
       <Card
         img={musicImg}
-        title='Musica'
-        description='Qué canción no puede faltar en la noche'
+        title='Music'
+        description='Qué canción no puede faltar esa noche'
         modal={<Music />}
       />
       <Card
         img={dressCode}
         title='Dress Code'
-        description='Formal elegante. Evitar blanco y similares'
+        description='Formal elegante. Evitar blanco y similitudes'
       />
     </Grid>
   )

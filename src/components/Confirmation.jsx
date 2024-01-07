@@ -8,12 +8,14 @@ import {
   Grid,
   MenuItem,
   Modal,
-  TextField
+  TextField,
+  styled
 } from '@mui/material'
 import useIsMobile from '../hooks/useIsMobile'
 import { useCallback, useState } from 'react'
 import Swal from 'sweetalert2'
 import BackgroundImage from '../assets/background.jpg'
+import { grey } from '@mui/material/colors'
 
 const useStyles = isMobile => ({
   confirmationContainer: {
@@ -74,6 +76,15 @@ const useStyles = isMobile => ({
     color: '#f6f5f1'
   }
 })
+
+const ColorButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.getContrastText(grey[800]),
+  backgroundColor: grey[800],
+  borderColor: grey[900],
+  '&:hover': {
+    backgroundColor: grey[900]
+  }
+}))
 
 export default function Confirmation () {
   const isMobile = useIsMobile()
@@ -207,20 +218,20 @@ function ConfirmationModal () {
             <Grid>{renderInputs()}</Grid>
 
             <Grid style={styles.modalButtons}>
-              <Button
+              <ColorButton
                 variant='outlined'
                 disabled={inputs.length >= 2}
                 onClick={handleAdd}
               >
                 Agregar acompañante
-              </Button>
-              <Button
+              </ColorButton>
+              <ColorButton
                 variant='outlined'
                 color='success'
                 onClick={handleConfirm}
               >
                 Confirmar Asistencia
-              </Button>
+              </ColorButton>
             </Grid>
           </Grid>
         </Fade>

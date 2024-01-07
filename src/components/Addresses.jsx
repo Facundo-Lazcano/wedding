@@ -42,8 +42,13 @@ function useStyles (isMobile) {
     time: {
       display: 'flex',
       justifyContent: 'center',
+      alignItems: 'center',
+      gap: 0,
       fontWeight: 'bold',
-      alignSelf: 'center'
+      alignSelf: 'center',
+      textAlign: 'center',
+      margin: 0,
+      fontSize: '16px'
     },
     mapButton: {
       marginTop: '10px',
@@ -90,7 +95,7 @@ export default function Addresses () {
       <AdressCard
         style={styles.church}
         title='Iglesia'
-        place='Iglesia Nuestra Señora del Carmen.'
+        place='Iglesia Nuestra Señora del Carmen'
         time='16:30'
         mapUrl='https://maps.app.goo.gl/ZAeNKpKsS4teY5mz5'
       />
@@ -151,7 +156,8 @@ function AdressCard ({ title, place, time, mapUrl, style }) {
       <Grid style={styles.place}>{place}</Grid>
       {time ? (
         <Grid style={styles.time}>
-          <AccessTime /> {time}
+          <AccessTime />
+          {time}
         </Grid>
       ) : null}
       {mapUrl ? (

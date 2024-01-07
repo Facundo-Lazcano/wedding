@@ -1,9 +1,18 @@
 /* eslint-disable react/prop-types */
-import { Backdrop, Button, Fade, Grid, Modal, TextField } from '@mui/material'
+import {
+  Backdrop,
+  Button,
+  Fade,
+  Grid,
+  Modal,
+  TextField,
+  styled
+} from '@mui/material'
 import useIsMobile from '../hooks/useIsMobile'
 import { useCallback, useMemo, useState } from 'react'
 import Swal from 'sweetalert2'
 import BackgroundImage from '../assets/background.jpg'
+import { grey } from '@mui/material/colors'
 
 const useStyles = isMobile => ({
   musicContainer: {
@@ -65,6 +74,15 @@ const useStyles = isMobile => ({
     marginTop: '5px'
   }
 })
+
+const ColorButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.getContrastText(grey[800]),
+  backgroundColor: grey[800],
+  borderColor: grey[900],
+  '&:hover': {
+    backgroundColor: grey[900]
+  }
+}))
 
 export default function Music () {
   return <MusicModal />
@@ -155,13 +173,9 @@ function MusicModal () {
               )
             })}
             <Grid style={styles.modalButtons}>
-              <Button
-                color='warning'
-                variant='outlined'
-                onClick={handleConfirm}
-              >
+              <ColorButton variant='outlined' onClick={handleConfirm}>
                 Sugerir canción
-              </Button>
+              </ColorButton>
             </Grid>
           </Grid>
         </Fade>
