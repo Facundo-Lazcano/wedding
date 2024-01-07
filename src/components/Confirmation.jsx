@@ -13,6 +13,7 @@ import {
 import useIsMobile from '../hooks/useIsMobile'
 import { useCallback, useState } from 'react'
 import Swal from 'sweetalert2'
+import BackgroundImage from '../assets/background.jpg'
 
 const useStyles = isMobile => ({
   confirmationContainer: {
@@ -25,27 +26,35 @@ const useStyles = isMobile => ({
   input: {
     justifyContent: 'space-between',
     display: 'flex',
-    margin: '10px 0',
-    gap: 10
+    flexDirection: 'column',
+    margin: '5px 0',
+    gap: 10,
+    border: '1px solid #1b1b1b',
+    borderRadius: '5px',
+    padding: '10px'
   },
   modal: {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: 'white',
+    backgroundImage: `url(${BackgroundImage})`,
     border: '2px solid #000',
     borderRadius: '3px',
     boxShadow: 24,
     padding: '20px',
-    width: isMobile ? '95vw' : '600px'
+    width: isMobile ? '95vw' : '600px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '85vh',
+    overflow: 'auto',
+    overflowX: 'hidden'
   },
   modalButtons: {
     display: 'flex',
-    justifyContent: 'space-between'
-  },
-  inputWithCheckbox: {
-    width: isMobile ? '60%' : '75%'
+    justifyContent: 'space-between',
+    gap: 10
   },
   text: {
     marginBottom: '15px',
@@ -57,7 +66,7 @@ const useStyles = isMobile => ({
     marginBottom: '15px'
   },
   textfield: {
-    minWidth: '18%'
+    width: '100%'
   },
   button: {
     borderRadius: '30px',
@@ -85,7 +94,8 @@ function ConfirmationModal () {
     lastName: '',
     special: false,
     age: 'Mayor',
-    companion: false
+    companion: false,
+    specialDetail: ''
   }
   const [inputs, setInputs] = useState([initialInputs])
 
@@ -105,7 +115,8 @@ function ConfirmationModal () {
           special: false,
           specialDescription: '',
           age: '',
-          companion: true
+          companion: true,
+          specialDetail: ''
         })
         return cloneState
       }),
@@ -123,7 +134,11 @@ function ConfirmationModal () {
           sheetName: 'Casamiento',
           Nombre: input.firstName.trim(),
           Apellido: input.lastName.trim(),
-          Menu: input.special ? input.specialDescription.trim() : 'No',
+          Menu: input.special
+            ? input.specialDescription === 'otro'
+              ? input.specialDetail
+              : input.specialDescription.trim()
+            : 'No',
           Edad: input.age,
           'Acompañante de':
             idx === 0 ? '' : `${inputs[0].firstName} ${inputs[0].lastName}`
@@ -138,15 +153,37 @@ function ConfirmationModal () {
       Swal.fire({
         title: 'Asistencia Confirmada',
         text: 'Gracias por confirmar tu asistencia. Te esperamos!',
+        background: `url(${BackgroundImage})`,
         icon: 'success'
       })
     } catch (error) {
       Swal.fire({
         title: 'Ocurrió un error',
+        background: `url(${BackgroundImage})`,
         icon: 'error'
       })
     }
   }
+
+  const renderInputs = useCallback(() => {
+    return inputs.map((input, idx) => {
+      return (
+        <ConfirmationInput
+          key={idx}
+          idx={idx}
+          setInputs={setInputs}
+          firstName={input.firstName}
+          lastName={input.lastName}
+          special={input.special}
+          age={input.age}
+          companion={input.companion}
+          specialDetail={input.specialDetail}
+          specialDescription={input.specialDescription}
+        />
+      )
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(inputs)])
   return (
     <Grid>
       <Button style={styles.button} variant='outlined' onClick={handleOpen}>
@@ -167,22 +204,14 @@ function ConfirmationModal () {
       >
         <Fade in={open}>
           <Grid style={styles.modal}>
-            {inputs.map((input, idx) => {
-              return (
-                <ConfirmationInput
-                  key={idx}
-                  idx={idx}
-                  setInputs={setInputs}
-                  firstName={input.firstName}
-                  lastName={input.lastName}
-                  special={input.special}
-                  age={input.age}
-                  companion={input.companion}
-                />
-              )
-            })}
+            <Grid>{renderInputs()}</Grid>
+
             <Grid style={styles.modalButtons}>
-              <Button variant='outlined' onClick={handleAdd}>
+              <Button
+                variant='outlined'
+                disabled={inputs.length >= 2}
+                onClick={handleAdd}
+              >
                 Agregar acompañante
               </Button>
               <Button
@@ -208,7 +237,8 @@ function ConfirmationInput ({
   special,
   specialDescription,
   age,
-  companion
+  companion,
+  specialDetail
 }) {
   const isMobile = useIsMobile()
   const styles = useStyles(isMobile)
@@ -231,15 +261,7 @@ function ConfirmationInput ({
       }),
     [idx, setInputs]
   )
-  const handleSpecialMenuDescriptionChange = useCallback(
-    e =>
-      setInputs(prevState => {
-        const cloneState = JSON.parse(JSON.stringify(prevState))
-        cloneState[idx].specialDescription = e.target.value
-        return cloneState
-      }),
-    [idx, setInputs]
-  )
+
   const handleSpecialMenuChange = useCallback(
     () =>
       setInputs(prevState => {
@@ -250,11 +272,26 @@ function ConfirmationInput ({
     [idx, setInputs]
   )
 
-  const handleAgeChange = useCallback(
+  function handleAgeChange (e) {
+    setInputs(prevState => {
+      const cloneState = JSON.parse(JSON.stringify(prevState))
+      cloneState[idx].age = e.target.value
+      return cloneState
+    })
+  }
+  function handleSpecialMenuDescriptionChange (e) {
+    setInputs(prevState => {
+      const cloneState = JSON.parse(JSON.stringify(prevState))
+      cloneState[idx].specialDescription = e.target.value
+      return cloneState
+    })
+  }
+
+  const handleSpecialDetailChange = useCallback(
     e =>
       setInputs(prevState => {
         const cloneState = JSON.parse(JSON.stringify(prevState))
-        cloneState[idx].age = e.target.value
+        cloneState[idx].specialDetail = e.target.value
         return cloneState
       }),
     [idx, setInputs]
@@ -292,9 +329,7 @@ function ConfirmationInput ({
             style={{ position: 'absolute', right: '0' }}
           />
           <TextField
-            inputProps={{
-              style: styles.inputWithCheckbox
-            }}
+            select
             style={styles.textfield}
             required={special}
             name='Especial'
@@ -302,9 +337,23 @@ function ConfirmationInput ({
             value={specialDescription}
             onChange={handleSpecialMenuDescriptionChange}
             label='Menu especial'
-          />
+          >
+            <MenuItem value='vegano'>Vegano</MenuItem>
+            <MenuItem value='vegetariano'>Vegetariano</MenuItem>
+            <MenuItem value='celiaco'>Celiaco</MenuItem>
+            <MenuItem value='otro'>Otro</MenuItem>
+          </TextField>
         </div>
+        {specialDescription === 'otro' ? (
+          <TextField
+            style={{ position: 'absolute', left: '30%' }}
+            value={specialDetail}
+            label='Detalle'
+            onChange={handleSpecialDetailChange}
+          />
+        ) : null}
       </FormGroup>
+
       {companion ? (
         <TextField
           select
@@ -314,9 +363,9 @@ function ConfirmationInput ({
           style={styles.textfield}
           required
         >
-          <MenuItem value='Mayor'>+12</MenuItem>
-          <MenuItem value='Cadete'>+4/-12</MenuItem>
-          <MenuItem value='Menor'>-4</MenuItem>
+          <MenuItem value='Mayor'>Mayor de 12 años</MenuItem>
+          <MenuItem value='Cadete'>Entre 4 y 12 años</MenuItem>
+          <MenuItem value='Menor'>Menor a 4 años</MenuItem>
         </TextField>
       ) : null}
     </Grid>
