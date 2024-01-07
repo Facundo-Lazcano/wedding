@@ -126,6 +126,7 @@ export default function TimeLeftCounter () {
         startDate='2024-03-09'
         startTime='16:30'
         endDate='2024-03-10'
+        timeZone='America/Argentina/Cordoba'
         endTime='05:00'
         options={['Google']}
         language='es'

@@ -37,7 +37,7 @@ const useStyles = isMobile => ({
     padding: '5px',
     marginBottom: '15px',
     cursor: 'pointer',
-    fontSize: '12px',
+    fontSize: '10px',
     color: '#1b1b1b'
   },
   modal: {
@@ -50,7 +50,7 @@ const useStyles = isMobile => ({
     borderRadius: '3px',
     boxShadow: 24,
     padding: '10px',
-    width: isMobile ? '99%' : '600px'
+    maxWidth: isMobile ? '99%' : '600px'
   },
   info: {
     position: 'absolute',
