@@ -1,20 +1,20 @@
 import BackgroundImage from '../assets/parallax.jpg'
-
+import { Parallax } from 'react-parallax'
 const useStyles = () => ({
   parallax: {
-    position: 'relative',
-    backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundImage: `url(${BackgroundImage})`,
-    height: '30vh'
+    height: '300px'
   }
 })
 
 const ParallaxBackground = () => {
   const styles = useStyles()
-  return <div className='parallax' style={styles.parallax}></div>
+  return (
+    <Parallax bgImage={BackgroundImage} strength={100}>
+      <div className='parallax' style={styles.parallax}></div>
+    </Parallax>
+  )
 }
 
 export default ParallaxBackground
