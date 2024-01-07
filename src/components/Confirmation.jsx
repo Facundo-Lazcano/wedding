@@ -12,10 +12,11 @@ import {
   styled
 } from '@mui/material'
 import useIsMobile from '../hooks/useIsMobile'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import BackgroundImage from '../assets/background.jpg'
 import { grey } from '@mui/material/colors'
+import { DeleteForever } from '@mui/icons-material'
 
 const useStyles = isMobile => ({
   confirmationContainer: {
@@ -33,7 +34,8 @@ const useStyles = isMobile => ({
     gap: 10,
     border: '1px solid #1b1b1b',
     borderRadius: '5px',
-    padding: '10px'
+    padding: '10px',
+    position: 'relative'
   },
   modal: {
     position: 'absolute',
@@ -106,14 +108,38 @@ function ConfirmationModal () {
     special: false,
     age: 'Mayor',
     companion: false,
-    specialDetail: ''
+    specialDetail: '',
+    specialDescription: ''
   }
   const [inputs, setInputs] = useState([initialInputs])
+  const [disableConfirm, setDisableConfirm] = useState(true)
+
+  useEffect(() => {
+    inputs.forEach(input => {
+      const {
+        firstName,
+        lastName,
+        special,
+        specialDescription,
+        specialDetail,
+        age
+      } = input
+
+      setDisableConfirm(
+        firstName === '' ||
+          lastName === '' ||
+          age === '' ||
+          (special && specialDescription === '') ||
+          (specialDescription === 'otro' && specialDetail === '')
+      )
+    })
+  }, [inputs])
 
   const handleOpen = useCallback(() => setOpen(true), [])
   const handleClose = useCallback(() => {
     setOpen(false)
     setInputs([initialInputs])
+    setDisableConfirm(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const handleAdd = useCallback(
@@ -228,6 +254,7 @@ function ConfirmationModal () {
               <ColorButton
                 variant='outlined'
                 color='success'
+                disabled={disableConfirm}
                 onClick={handleConfirm}
               >
                 Confirmar Asistencia
@@ -253,6 +280,14 @@ function ConfirmationInput ({
 }) {
   const isMobile = useIsMobile()
   const styles = useStyles(isMobile)
+
+  function handleDeleteInput () {
+    setInputs(prevState => {
+      const cloneState = JSON.parse(JSON.stringify(prevState))
+      cloneState.splice(idx, 1)
+      return cloneState
+    })
+  }
 
   const handleFirstNameChange = useCallback(
     e =>
@@ -358,6 +393,7 @@ function ConfirmationInput ({
         {specialDescription === 'otro' ? (
           <TextField
             style={{ position: 'absolute', left: '30%' }}
+            disabled={specialDescription !== 'otro' || !special}
             value={specialDetail}
             label='Detalle'
             onChange={handleSpecialDetailChange}
@@ -366,18 +402,23 @@ function ConfirmationInput ({
       </FormGroup>
 
       {companion ? (
-        <TextField
-          select
-          value={age}
-          onChange={handleAgeChange}
-          label='Edad'
-          style={styles.textfield}
-          required
-        >
-          <MenuItem value='Mayor'>Mayor de 12 años</MenuItem>
-          <MenuItem value='Cadete'>Entre 4 y 12 años</MenuItem>
-          <MenuItem value='Menor'>Menor a 4 años</MenuItem>
-        </TextField>
+        <>
+          <TextField
+            select
+            value={age}
+            onChange={handleAgeChange}
+            label='Edad'
+            style={styles.textfield}
+            required
+          >
+            <MenuItem value='Mayor'>Mayor de 12 años</MenuItem>
+            <MenuItem value='Cadete'>Entre 4 y 12 años</MenuItem>
+            <MenuItem value='Menor'>Menor a 4 años</MenuItem>
+          </TextField>
+          <ColorButton onClick={handleDeleteInput}>
+            <DeleteForever />
+          </ColorButton>
+        </>
       ) : null}
     </Grid>
   )
