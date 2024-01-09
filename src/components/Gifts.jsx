@@ -197,10 +197,10 @@ function BankDetailsModal () {
                 setAliasCopy={setAliasCopy}
               />
               <BankAccountCard
-                alias='WOMO.DOLARES'
+                alias='WOMO.GALICIA.USD'
                 type='USD'
-                cbu='0720247888000038225440'
-                bank='Hipotecario'
+                cbu='0070999031004181461315'
+                bank='Galicia'
                 owner='FACUNDO GASTON LAZCANO COLODRERO'
                 aliasCopy={aliasCopy}
                 setAliasCopy={setAliasCopy}
